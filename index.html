@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="lib/json2.js"></script>
+	<script src="lib/jquery-2.0.3.js"></script>
+	<script src="lib/lodash.underscore.js"></script>
+	<script src="lib/backbone.js"></script>
+	<script src="lib/backbone.marionette.js"></script>
+	
+	<title>My marionette app</title>
+</head>
+<body>
+<style>
+body {
+	font-family: Arial;
+}
+ul {
+	list-style: none;
+}
+
+ul li{
+	float: left;
+	margin-left: 10px;
+	cursor: pointer;
+}
+
+ul li:hover {
+	border-bottom: solid 1px blue;
+}
+
+ul li.selected {
+	font-weight: bold;
+}
+
+.tab-content {
+	border: solid 1px #ccc;
+	margin: 20px;
+	min-height: 400px;
+}
+</style>
+
+<script type='template' id='hello-layout'>
+Enter name: <input type='text' /><br/>
+<h1 id='payload'></h1>
+</script>
+
+
+<script type='template' id='multi-tab-template'>
+	<div class='tabs'></div>
+	<div style='clear:both;'></div>
+	<div class='tab-content'></div>
+</script>
+
+<div id='main'></div>
+<div id='main-tabs'></div>
+
+<script src="app.js"></script>
+<script src="tabs.js"></script>
+<script>
+MyApp.start();
+</script>
+</body>
+</html>
