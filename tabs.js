@@ -23,12 +23,11 @@ MyApp.module("TabTest",function(HelloWorld,MyApp,Backbone,Marionette,$,_) {
 	});
 
 	var TabItemView = Marionette.ItemView.extend({
-		template: _.template("<li class='<%= selectedClass() %>'><%= name %></li>"),
-		templateHelpers: {
-			selectedClass: function() {
-				return this.selected ? "selected" : "";
-			}
-		}
+		tagName: "li",
+		className: function() {
+			return this.model.get("selected") ? "selected": "";
+		},
+		template: _.template("<%= name %>")
 	});
 
 	var TabItemViewCollection = Marionette.CollectionView.extend({
@@ -41,9 +40,10 @@ MyApp.module("TabTest",function(HelloWorld,MyApp,Backbone,Marionette,$,_) {
 			});
 			this.render();
 			this.trigger("tabChanged", tabName);
+			console.log("tabchanged",tabName);
 		},
 		onRender: function() {
-			this.$("li").on("click", _.bind(this.switchTab,this));
+			this.$("li").not(".selected").on("click", _.bind(this.switchTab,this));
 		}
 	});
 
@@ -76,7 +76,7 @@ MyApp.module("TabTest",function(HelloWorld,MyApp,Backbone,Marionette,$,_) {
 	var tab3 = new TabLayout({
 		collection: new TabCollection([
 				{name: "Category Snapshot",	tabView:	new TestView({message: "This is the cat snapshot page"}) },
-				{name: "Historical Category",	tabView:	new TestView({message: "This is the historicat cat page"})}
+				{name: "Risk",	tabView:	new TestView({message: "This is the historicat cat page"})}
 			])
 	});
 
